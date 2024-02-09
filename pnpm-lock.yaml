@@ -4,81 +4,98 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-dependencies:
-  '@remix-run/cloudflare':
-    specifier: 0.0.0-nightly-07a73a2-20240208
-    version: 0.0.0-nightly-07a73a2-20240208(@cloudflare/workers-types@4.20240208.0)(typescript@5.3.3)
-  '@remix-run/cloudflare-pages':
-    specifier: 0.0.0-nightly-07a73a2-20240208
-    version: 0.0.0-nightly-07a73a2-20240208(@cloudflare/workers-types@4.20240208.0)(typescript@5.3.3)
-  '@remix-run/react':
-    specifier: 0.0.0-nightly-07a73a2-20240208
-    version: 0.0.0-nightly-07a73a2-20240208(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)
-  isbot:
-    specifier: ^4.1.0
-    version: 4.4.0
-  miniflare:
-    specifier: ^3.20231030.4
-    version: 3.20240129.1
-  react:
-    specifier: ^18.2.0
-    version: 18.2.0
-  react-dom:
-    specifier: ^18.2.0
-    version: 18.2.0(react@18.2.0)
+importers:
 
-devDependencies:
-  '@cloudflare/workers-types':
-    specifier: ^4.20230518.0
-    version: 4.20240208.0
-  '@remix-run/dev':
-    specifier: 0.0.0-nightly-07a73a2-20240208
-    version: 0.0.0-nightly-07a73a2-20240208(typescript@5.3.3)(vite@5.1.0)
-  '@types/react':
-    specifier: ^18.2.20
-    version: 18.2.55
-  '@types/react-dom':
-    specifier: ^18.2.7
-    version: 18.2.19
-  '@typescript-eslint/eslint-plugin':
-    specifier: ^6.7.4
-    version: 6.21.0(@typescript-eslint/parser@6.21.0)(eslint@8.56.0)(typescript@5.3.3)
-  eslint:
-    specifier: ^8.38.0
-    version: 8.56.0
-  eslint-config-prettier:
-    specifier: ^9.0.0
-    version: 9.1.0(eslint@8.56.0)
-  eslint-import-resolver-typescript:
-    specifier: ^3.6.1
-    version: 3.6.1(@typescript-eslint/parser@6.21.0)(eslint-plugin-import@2.29.1)(eslint@8.56.0)
-  eslint-plugin-import:
-    specifier: ^2.28.1
-    version: 2.29.1(@typescript-eslint/parser@6.21.0)(eslint-import-resolver-typescript@3.6.1)(eslint@8.56.0)
-  eslint-plugin-jsx-a11y:
-    specifier: ^6.7.1
-    version: 6.8.0(eslint@8.56.0)
-  eslint-plugin-react:
-    specifier: ^7.33.2
-    version: 7.33.2(eslint@8.56.0)
-  eslint-plugin-react-hooks:
-    specifier: ^4.6.0
-    version: 4.6.0(eslint@8.56.0)
-  node-fetch:
-    specifier: ^3.3.2
-    version: 3.3.2
-  typescript:
-    specifier: ^5.1.6
-    version: 5.3.3
-  vite:
-    specifier: ^5.1.0
-    version: 5.1.0
-  vite-tsconfig-paths:
-    specifier: ^4.2.1
-    version: 4.3.1(typescript@5.3.3)(vite@5.1.0)
-  wrangler:
-    specifier: ^3.24.0
-    version: 3.28.0(@cloudflare/workers-types@4.20240208.0)
+  .:
+    dependencies:
+      '@remix-run/cloudflare':
+        specifier: 0.0.0-nightly-07a73a2-20240208
+        version: 0.0.0-nightly-07a73a2-20240208(@cloudflare/workers-types@4.20240208.0)(typescript@5.3.3)
+      '@remix-run/cloudflare-pages':
+        specifier: 0.0.0-nightly-07a73a2-20240208
+        version: 0.0.0-nightly-07a73a2-20240208(@cloudflare/workers-types@4.20240208.0)(typescript@5.3.3)
+      '@remix-run/react':
+        specifier: 0.0.0-nightly-07a73a2-20240208
+        version: 0.0.0-nightly-07a73a2-20240208(react-dom@18.2.0)(react@18.2.0)(typescript@5.3.3)
+      isbot:
+        specifier: ^4.4.0
+        version: 4.4.0
+      miniflare:
+        specifier: ^3.20240129.1
+        version: 3.20240129.1
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
+    devDependencies:
+      '@cloudflare/workers-types':
+        specifier: ^4.20240208.0
+        version: 4.20240208.0
+      '@remix-run/dev':
+        specifier: 0.0.0-nightly-07a73a2-20240208
+        version: 0.0.0-nightly-07a73a2-20240208(typescript@5.3.3)(vite@5.1.0)
+      '@types/react':
+        specifier: ^18.2.20
+        version: 18.2.55
+      '@types/react-dom':
+        specifier: ^18.2.7
+        version: 18.2.19
+      '@typescript-eslint/eslint-plugin':
+        specifier: ^6.7.4
+        version: 6.21.0(@typescript-eslint/parser@6.21.0)(eslint@8.56.0)(typescript@5.3.3)
+      eslint:
+        specifier: ^8.38.0
+        version: 8.56.0
+      eslint-config-prettier:
+        specifier: ^9.0.0
+        version: 9.1.0(eslint@8.56.0)
+      eslint-import-resolver-typescript:
+        specifier: ^3.6.1
+        version: 3.6.1(@typescript-eslint/parser@6.21.0)(eslint-plugin-import@2.29.1)(eslint@8.56.0)
+      eslint-plugin-import:
+        specifier: ^2.28.1
+        version: 2.29.1(@typescript-eslint/parser@6.21.0)(eslint-import-resolver-typescript@3.6.1)(eslint@8.56.0)
+      eslint-plugin-jsx-a11y:
+        specifier: ^6.7.1
+        version: 6.8.0(eslint@8.56.0)
+      eslint-plugin-react:
+        specifier: ^7.33.2
+        version: 7.33.2(eslint@8.56.0)
+      eslint-plugin-react-hooks:
+        specifier: ^4.6.0
+        version: 4.6.0(eslint@8.56.0)
+      node-fetch:
+        specifier: ^3.3.2
+        version: 3.3.2
+      prettier:
+        specifier: ^3.2.5
+        version: 3.2.5
+      typescript:
+        specifier: ^5.3.3
+        version: 5.3.3
+      vite:
+        specifier: ^5.1.0
+        version: 5.1.0
+      vite-tsconfig-paths:
+        specifier: ^4.3.1
+        version: 4.3.1(typescript@5.3.3)(vite@5.1.0)
+      wrangler:
+        specifier: ^3.28.0
+        version: 3.28.0(@cloudflare/workers-types@4.20240208.0)
+
+  services/chat-room:
+    devDependencies:
+      '@cloudflare/workers-types':
+        specifier: ^4.20240208.0
+        version: 4.20240208.0
+      typescript:
+        specifier: ^5.3.3
+        version: 5.3.3
+      wrangler:
+        specifier: ^3.28.0
+        version: 3.28.0(@cloudflare/workers-types@4.20240208.0)
 
 packages:
 
@@ -1902,7 +1919,7 @@ packages:
       '@babel/plugin-syntax-typescript': 7.23.3(@babel/core@7.23.9)
       '@vanilla-extract/babel-plugin-debug-ids': 1.0.4
       '@vanilla-extract/css': 1.14.1
-      esbuild: 0.17.6
+      esbuild: 0.19.12
       eval: 0.1.8
       find-up: 5.0.0
       javascript-stringify: 2.1.0
@@ -5350,6 +5367,12 @@ packages:
   /prettier@2.8.8:
     resolution: {integrity: sha512-tdN8qQGvNjw4CHbY+XXk0JgCXn9QiF21a55rBe5LJAU+kDyC4WQn4+awm2Xfk2lQMk5fKup9XgzTZtGkjBdP9Q==}
     engines: {node: '>=10.13.0'}
+    hasBin: true
+    dev: true
+
+  /prettier@3.2.5:
+    resolution: {integrity: sha512-3/GWa9aOC0YeD7LUfvOG2NiDyhOWRvt1k+rcKhOuYnMY24iiCphgneUfJDyFXd6rZCAnuLBv6UeAULtrhT/F4A==}
+    engines: {node: '>=14'}
     hasBin: true
     dev: true
 

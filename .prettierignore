@@ -1,3 +1,6 @@
+pnpm-lock.yaml
+
+# .gitignore
 /.cache
 /.wrangler
 /build
