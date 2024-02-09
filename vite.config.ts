@@ -10,6 +10,11 @@ export default defineConfig({
 		}),
 		tsconfigPaths(),
 	],
+	server: {
+		hmr: {
+			port: 5174,
+		},
+	},
 	ssr: {
 		resolve: {
 			externalConditions: ["workerd", "worker"],

@@ -1,12 +1,14 @@
 {
 	"extends": ["./tsconfig.base.json"],
-	"include": ["env.d.ts", "app/*.ts", "app/*.tsx"],
+	"include": ["env.d.ts", "app/**/*.ts", "app/**/*.tsx"],
 	"compilerOptions": {
-		"jsx": "react-jsx",
-		"target": "ES2022",
 		"baseUrl": ".",
+		"esModuleInterop": true,
+		"isolatedModules": true,
+		"jsx": "react-jsx",
 		"paths": {
 			"~/*": ["./app/*"]
-		}
+		},
+		"target": "es2022"
 	}
 }

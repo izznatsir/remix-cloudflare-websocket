@@ -1,4 +1,4 @@
-name = "ChatRoom"
+name = "chat-room"
 main = "src/main.ts"
 compatibility_date = "2023-12-01"
 first_party_worker = true

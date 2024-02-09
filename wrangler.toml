@@ -1,14 +1,9 @@
 compatibility_date = "2023-12-01"
 
-kv_namespaces = [
-  { id = "DO_IDS", binding="DO_IDS" },
-  { id = "MY_KV", binding="MY_KV" }
-]
-
 [[durable_objects.bindings]]
 name = "ChatRoomDo"
 class_name = "ChatRoomDo"
-script_name = "ChatRoom"
+script_name = "chat-room"
 
 [[migrations]]
 tag = "v1"
