@@ -14,8 +14,8 @@ var ChatRoomDo = class {
   async fetch(request) {
     let url = new URL(request.url);
     switch (url.pathname) {
-      case "/connect": {
-        let client = this.#connect(request);
+      case "/join": {
+        let client = this.#join(request);
         return new Response(null, { status: 101, webSocket: client });
       }
       case "/broadcast": {
@@ -26,12 +26,15 @@ var ChatRoomDo = class {
       }
     }
   }
-  #connect(request) {
-    let { 0: server, 1: client } = new WebSocketPair();
+  #join(request) {
+    let { 0: client, 1: server } = new WebSocketPair();
     this.#state.acceptWebSocket(server);
     return client;
   }
   async #broadcast() {
+  }
+  webSocketMessage(ws, message) {
+    ws.send(message);
   }
 };
 
@@ -58,7 +61,7 @@ var jsonError = async (request, env, _ctx, middlewareCtx) => {
 var middleware_miniflare3_json_error_default = jsonError;
 var wrap = void 0;
 
-// .wrangler/tmp/bundle-Y4YSel/middleware-insertion-facade.js
+// .wrangler/tmp/bundle-rlAVnp/middleware-insertion-facade.js
 var envWrappers = [wrap].filter(Boolean);
 var facade = {
   ...main_default,
@@ -102,7 +105,7 @@ function __facade_invoke__(request, env, ctx, dispatch, finalMiddleware) {
   ]);
 }
 
-// .wrangler/tmp/bundle-Y4YSel/middleware-loader.entry.ts
+// .wrangler/tmp/bundle-rlAVnp/middleware-loader.entry.ts
 var __Facade_ScheduledController__ = class {
   constructor(scheduledTime, cron, noRetry) {
     this.scheduledTime = scheduledTime;

@@ -2,9 +2,11 @@ import { vitePlugin as remix, cloudflarePreset as cloudflare } from "@remix-run/
 import { defineConfig } from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
 import { getBindingsProxy } from "wrangler";
+import workerdWebsocketProxy from "./plugins/websocket-proxy";
 
 export default defineConfig({
 	plugins: [
+		workerdWebsocketProxy(),
 		remix({
 			presets: [cloudflare(getBindingsProxy)],
 		}),

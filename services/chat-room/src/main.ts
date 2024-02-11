@@ -24,8 +24,8 @@ export class ChatRoomDo {
 		let url = new URL(request.url);
 
 		switch (url.pathname) {
-			case "/connect": {
-				let client = this.#connect(request);
+			case "/join": {
+				let client = this.#join(request);
 
 				return new Response(null, { status: 101, webSocket: client });
 			}
@@ -38,8 +38,8 @@ export class ChatRoomDo {
 		}
 	}
 
-	#connect(request: Request) {
-		let { 0: server, 1: client } = new WebSocketPair();
+	#join(request: Request) {
+		let { 0: client, 1: server } = new WebSocketPair();
 
 		this.#state.acceptWebSocket(server);
 
@@ -47,4 +47,8 @@ export class ChatRoomDo {
 	}
 
 	async #broadcast() {}
+
+	webSocketMessage(ws: WebSocket, message: string | ArrayBuffer) {
+		ws.send(message);
+	}
 }

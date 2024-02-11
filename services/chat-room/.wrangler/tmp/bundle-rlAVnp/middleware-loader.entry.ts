@@ -4,7 +4,7 @@
 // // through wrangler, or we can potentially let users directly add them as a sort
 // // of "plugin" system.
 
-import worker from "/home/izznatsir/codes/github.com/izznatsir/remix-cloudflare-chat-demo/services/chat-room/.wrangler/tmp/bundle-Y4YSel/middleware-insertion-facade.js";
+import worker from "/home/izznatsir/codes/github.com/izznatsir/remix-cloudflare-chat-demo/services/chat-room/.wrangler/tmp/bundle-rlAVnp/middleware-insertion-facade.js";
 import {
 	__facade_invoke__,
 	__facade_register__,
@@ -13,7 +13,7 @@ import {
 } from "/home/izznatsir/codes/github.com/izznatsir/remix-cloudflare-chat-demo/node_modules/.pnpm/wrangler@3.28.0_@cloudflare+workers-types@4.20240208.0/node_modules/wrangler/templates/middleware/common.ts";
 
 // We need to preserve all of the exports from the worker
-export * from "/home/izznatsir/codes/github.com/izznatsir/remix-cloudflare-chat-demo/services/chat-room/.wrangler/tmp/bundle-Y4YSel/middleware-insertion-facade.js";
+export * from "/home/izznatsir/codes/github.com/izznatsir/remix-cloudflare-chat-demo/services/chat-room/.wrangler/tmp/bundle-rlAVnp/middleware-insertion-facade.js";
 
 class __Facade_ScheduledController__ implements ScheduledController {
 	#noRetry: ScheduledController["noRetry"];
