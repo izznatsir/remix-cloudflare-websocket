@@ -1,12 +1,12 @@
-name = "chat-room"
+name = "echo"
 main = "src/main.ts"
 compatibility_date = "2023-12-01"
 first_party_worker = true
 
 [[durable_objects.bindings]]
-name = "ChatRoomDo"
-class_name = "ChatRoomDo"
+name = "EchoDo"
+class_name = "EchoDo"
 
 [[migrations]]
 tag = "v1"
-new_classes = ["ChatRoomDo"]
+new_classes = ["EchoDo"]

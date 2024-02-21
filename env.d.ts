@@ -4,7 +4,7 @@
 import { type PlatformProxy } from "wrangler";
 
 interface Env {
-	ChatRoomDo: DurableObjectNamespace;
+	EchoDo: DurableObjectNamespace;
 }
 
 type Cloudflare = Omit<PlatformProxy<Env>, "dispose">;

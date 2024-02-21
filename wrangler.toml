@@ -1,10 +1,10 @@
 compatibility_date = "2023-12-01"
 
 [[durable_objects.bindings]]
-name = "ChatRoomDo"
-class_name = "ChatRoomDo"
-script_name = "chat-room"
+name = "EchoDo"
+class_name = "EchoDo"
+script_name = "echo"
 
 [[migrations]]
 tag = "v1"
-new_classes = ["ChatRoomDo"]
+new_classes = ["EchoDo"]

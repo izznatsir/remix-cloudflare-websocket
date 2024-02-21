@@ -10,7 +10,7 @@ export default function Component() {
 
 		let protocol = location.protocol === "http:" ? "ws:" : "wss:";
 		try {
-			socket.current = new WebSocket(`${protocol}//${location.host}/room/1/join`);
+			socket.current = new WebSocket(`${protocol}//${location.host}/join`);
 			socket.current.addEventListener("message", async (e) => {
 				console.log(textDecoder.decode(await (e.data as Blob).arrayBuffer()));
 			});
