@@ -1,5 +1,5 @@
-/.cache
-/.wrangler
-/build
-/node_modules
-.env
+**/.cache
+**/.env
+**/.wrangler
+**/build
+**/node_modules
