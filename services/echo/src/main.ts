@@ -1,5 +1,5 @@
 interface Env {
-	ChatRoomDo: DurableObjectNamespace;
+	EchoDo: DurableObjectNamespace;
 }
 
 /**
@@ -11,7 +11,7 @@ export default {
 	},
 };
 
-export class ChatRoomDo {
+export class EchoDo {
 	#env: Env;
 	#state: DurableObjectState;
 

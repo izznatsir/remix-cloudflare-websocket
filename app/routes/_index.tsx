@@ -4,6 +4,7 @@ let textDecoder = new TextDecoder("utf-8");
 
 export default function Component() {
 	let socket = React.useRef<WebSocket>();
+	let [messages, setMessages] = React.useState<Array<string>>([]);
 
 	React.useEffect(() => {
 		if (socket.current) return;
@@ -12,7 +13,8 @@ export default function Component() {
 		try {
 			socket.current = new WebSocket(`${protocol}//${location.host}/join`);
 			socket.current.addEventListener("message", async (e) => {
-				console.log(textDecoder.decode(await (e.data as Blob).arrayBuffer()));
+				let incomingMessage = textDecoder.decode(await (e.data as Blob).arrayBuffer());
+				setMessages((messages) => [...messages, incomingMessage]);
 			});
 		} catch (error) {
 			console.error(error);
@@ -21,7 +23,7 @@ export default function Component() {
 
 	return (
 		<div>
-			<div>Chat Room</div>
+			<div>Echo</div>
 			<button
 				onClick={() => {
 					if (!socket.current) return;
@@ -29,8 +31,13 @@ export default function Component() {
 					socket.current.send("hello");
 				}}
 			>
-				Send
+				Hello!
 			</button>
+			<ul>
+				{messages.map((message, index) => (
+					<li key={index}>{message}</li>
+				))}
+			</ul>
 		</div>
 	);
 }
