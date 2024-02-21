@@ -1,12 +1,16 @@
 /// <reference types="@remix-run/cloudflare" />
 /// <reference types="vite/client" />
 
-declare module "@remix-run/cloudflare" {
-	interface AppLoadContext {
-		env: {
-			ChatRoomDo: DurableObjectNamespace;
-		};
-	}
+import { type PlatformProxy } from "wrangler";
+
+interface Env {
+	ChatRoomDo: DurableObjectNamespace;
 }
 
-export {};
+type Cloudflare = Omit<PlatformProxy<Env>, "dispose">;
+
+declare module "@remix-run/cloudflare" {
+	interface AppLoadContext {
+		cloudflare: Cloudflare;
+	}
+}
