@@ -1,7 +1,5 @@
 import * as React from "react";
 
-let textDecoder = new TextDecoder("utf-8");
-
 export default function Component() {
 	let socket = React.useRef<WebSocket>();
 	let [messages, setMessages] = React.useState<Array<string>>([]);
@@ -13,8 +11,7 @@ export default function Component() {
 		try {
 			socket.current = new WebSocket(`${protocol}//${location.host}/join`);
 			socket.current.addEventListener("message", async (e) => {
-				let incomingMessage = textDecoder.decode(await (e.data as Blob).arrayBuffer());
-				setMessages((messages) => [...messages, incomingMessage]);
+				setMessages((messages) => [...messages, e.data]);
 			});
 		} catch (error) {
 			console.error(error);

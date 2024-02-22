@@ -11,12 +11,12 @@ export default {
 	},
 };
 
+let textDecoder = new TextDecoder("utf-8");
+
 export class EchoDo {
-	#env: Env;
 	#state: DurableObjectState;
 
-	constructor(state: DurableObjectState, env: Env) {
-		this.#env = env;
+	constructor(state: DurableObjectState, _env: Env) {
 		this.#state = state;
 	}
 
@@ -38,7 +38,7 @@ export class EchoDo {
 		}
 	}
 
-	#join(request: Request) {
+	#join(_request: Request) {
 		let { 0: client, 1: server } = new WebSocketPair();
 
 		this.#state.acceptWebSocket(server);
@@ -46,9 +46,10 @@ export class EchoDo {
 		return client;
 	}
 
-	async #broadcast() {}
-
 	webSocketMessage(ws: WebSocket, message: string | ArrayBuffer) {
+		if (message instanceof ArrayBuffer) {
+			message = textDecoder.decode(message);
+		}
 		ws.send(message);
 	}
 }

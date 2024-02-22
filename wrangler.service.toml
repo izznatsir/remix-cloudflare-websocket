@@ -1,5 +1,5 @@
 name = "echo"
-main = "src/main.ts"
+main = "service.ts"
 compatibility_date = "2023-12-01"
 first_party_worker = true
 

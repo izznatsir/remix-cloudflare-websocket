@@ -1,14 +1,23 @@
 {
-	"extends": ["./tsconfig.base.json"],
-	"include": ["env.d.ts", "app/**/*.ts", "app/**/*.tsx"],
+	"include": ["env.d.ts", "**/*.ts", "**/*.tsx"],
+	"exclude": ["plugins/**/*.ts"],
 	"compilerOptions": {
 		"baseUrl": ".",
 		"esModuleInterop": true,
+		"forceConsistentCasingInFileNames": true,
 		"isolatedModules": true,
 		"jsx": "react-jsx",
+		"lib": ["dom", "dom.iterable", "esnext"],
+		"module": "esnext",
+		"moduleResolution": "bundler",
+		"noEmit": true,
 		"paths": {
 			"~/*": ["./app/*"]
 		},
-		"target": "es2022"
+		"resolveJsonModule": true,
+		"skipLibCheck": true,
+		"strict": true,
+		"target": "esnext",
+		"verbatimModuleSyntax": true
 	}
 }

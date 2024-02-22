@@ -1,6 +1,6 @@
 import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "@remix-run/react";
 
-export default function Component() {
+export function Layout({ children }: { children: React.ReactNode }) {
 	return (
 		<html lang="en">
 			<head>
@@ -10,7 +10,7 @@ export default function Component() {
 				<Links />
 			</head>
 			<body>
-				<Outlet />
+				{children}
 				<ScrollRestoration />
 				<Scripts />
 			</body>
@@ -18,6 +18,6 @@ export default function Component() {
 	);
 }
 
-// export default function App() {
-// 	return <Outlet />;
-// }
+export default function App() {
+	return <Outlet />;
+}

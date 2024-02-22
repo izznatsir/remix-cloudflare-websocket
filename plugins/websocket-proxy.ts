@@ -1,11 +1,12 @@
 import * as http from "node:http";
-
 import { type ServerBuild, createRequestHandler } from "@remix-run/server-runtime";
 import * as vite from "vite";
 import * as wrangler from "wrangler";
 import * as ws from "ws";
+import type { AppLoadContext } from "@remix-run/cloudflare";
 
 let serverBuildId = "virtual:remix/server-build";
+
 async function getRemixDevLoadContext() {
 	let { env, caches, cf, ctx } = await wrangler.getPlatformProxy();
 	return {
@@ -42,9 +43,12 @@ function plugin(): vite.PluginOption {
 			});
 
 			wsServer.on("connection", async (nodeWebSocket, nodeRequest) => {
+				(nodeRequest as vite.Connect.IncomingMessage).originalUrl = nodeRequest.url;
+
 				let remixBuild = (await viteDevServer.ssrLoadModule(serverBuildId)) as ServerBuild;
 				let remixHandler = createRequestHandler(remixBuild, "development");
-				let remixLoadContext = await getRemixDevLoadContext();
+				let remixLoadContext =
+					(await getRemixDevLoadContext()) as unknown as AppLoadContext;
 
 				let request = fromNodeRequest(nodeRequest);
 				let response = (await remixHandler(request, remixLoadContext)) as unknown as {
