@@ -25,7 +25,7 @@ export class EchoDo {
 
 		switch (url.pathname) {
 			case "/join": {
-				let client = this.#join(request);
+				let client = this.#join();
 
 				return new Response(null, { status: 101, webSocket: client });
 			}
@@ -38,7 +38,7 @@ export class EchoDo {
 		}
 	}
 
-	#join(_request: Request) {
+	#join() {
 		let { 0: client, 1: server } = new WebSocketPair();
 
 		this.#state.acceptWebSocket(server);
