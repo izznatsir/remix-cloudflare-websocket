@@ -1,0 +1,100 @@
+diff --git a/dist/vite/cloudflare-proxy-plugin.js b/dist/vite/cloudflare-proxy-plugin.js
+index 4a414ecb8c7956a0595073b95a7836ba3a3da934..a02834003d2c7c66c82b92d40be75a3ecd08ab35 100644
+--- a/dist/vite/cloudflare-proxy-plugin.js
++++ b/dist/vite/cloudflare-proxy-plugin.js
+@@ -1,5 +1,5 @@
+ /**
+- * @remix-run/dev v2.7.2
++ * @remix-run/dev v2.7.1
+  *
+  * Copyright (c) Remix Software Inc.
+  *
+@@ -13,6 +13,8 @@
+ Object.defineProperty(exports, '__esModule', { value: true });
+ 
+ var serverRuntime = require('@remix-run/server-runtime');
++var http = require('node:http');
++var WebSocket = require('ws');
+ var nodeAdapter = require('./node-adapter.js');
+ 
+ let serverBuildId = "virtual:remix/server-build";
+@@ -31,6 +33,13 @@ const cloudflareDevProxyVitePlugin = ({
+   return {
+     name: NAME,
+     config: () => ({
++      server: {
++        hmr: {
++          // HMR must be served on a different port than the dev server
++          // so non-HMR WebSocket upgrade request is handled by the WebSocket proxy
++          port: 4173
++        }
++      },
+       ssr: {
+         resolve: {
+           externalConditions: ["workerd", "worker"]
+@@ -56,6 +65,65 @@ const cloudflareDevProxyVitePlugin = ({
+       let context = {
+         cloudflare
+       };
++
++      // Create WebSocket proxy for Durable Object WebSocket
++      if (viteDevServer.httpServer instanceof http.Server) {
++        let wsServer = new WebSocket.Server({
++          server: viteDevServer.httpServer
++        });
++        wsServer.on("connection", async (nodeWs, nodeReq) => {
++          // Patch Node IncomingMessage to be compatible with Connect.IncomingMessage
++          nodeReq.originalUrl = nodeReq.url;
++          let build = await viteDevServer.ssrLoadModule(serverBuildId);
++          let handler = serverRuntime.createRequestHandler(build, "development");
++          let req = nodeAdapter.fromNodeRequest(nodeReq);
++          let loadContext = getLoadContext ? await getLoadContext({
++            request: req,
++            context
++          }) : context;
++          let request = nodeAdapter.fromNodeRequest(nodeReq);
++          let response = await handler(request, loadContext);
++          if (response.status !== 101 || response.webSocket === undefined) {
++            nodeWs.close();
++            return;
++          }
++          let doWs = response.webSocket;
++          doWs.accept();
++          let closedByClient = false;
++          let closedByWorkerd = false;
++          nodeWs.on("close", () => {
++            if (closedByWorkerd) {
++              closedByWorkerd = false;
++              viteDevServer.hot.send({
++                type: "full-reload"
++              });
++              return;
++            }
++            closedByClient = true;
++            doWs.close();
++          });
++          nodeWs.on("message", data => {
++            if (Array.isArray(data)) {
++              for (let datum of data) {
++                doWs.send(datum);
++              }
++            } else {
++              doWs.send(data);
++            }
++          });
++          doWs.addEventListener("close", () => {
++            if (closedByClient) {
++              closedByClient = false;
++              return;
++            }
++            closedByWorkerd = true;
++            nodeWs.close();
++          });
++          doWs.addEventListener("message", e => {
++            nodeWs.send(e.data);
++          });
++        });
++      }
+       return () => {
+         if (!viteDevServer.config.server.middlewareMode) {
+           viteDevServer.middlewares.use(async (nodeReq, nodeRes, next) => {

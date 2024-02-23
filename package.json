@@ -7,25 +7,25 @@
 		"build": "remix vite:build",
 		"deploy": "wrangler pages deploy ./build/client",
 		"dev": "remix vite:dev",
-		"dev:service": "wrangler dev --config wrangler.service.toml",
+		"dev:durable-objects": "wrangler dev --config wrangler.durable-objects.toml",
 		"format": "prettier --ignore-unknown --write .",
 		"lint": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint .",
 		"start": "wrangler pages dev ./build/client",
 		"typecheck": "tsc"
 	},
 	"dependencies": {
-		"@remix-run/cloudflare": "2.7.1",
-		"@remix-run/cloudflare-pages": "2.7.1",
-		"@remix-run/react": "2.7.1",
+		"@remix-run/cloudflare": "2.7.2",
+		"@remix-run/cloudflare-pages": "2.7.2",
+		"@remix-run/react": "2.7.2",
 		"isbot": "^5.1.0",
-		"miniflare": "^3.20240129.3",
+		"miniflare": "^3.20240208.0",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0"
 	},
 	"devDependencies": {
-		"@cloudflare/workers-types": "^4.20240208.0",
-		"@remix-run/dev": "2.7.1",
-		"@remix-run/server-runtime": "2.7.1",
+		"@cloudflare/workers-types": "^4.20240222.0",
+		"@remix-run/dev": "2.7.2",
+		"@remix-run/server-runtime": "2.7.2",
 		"@types/react": "^18.2.57",
 		"@types/react-dom": "^18.2.7",
 		"@types/ws": "^8.5.10",
@@ -40,9 +40,9 @@
 		"node-fetch": "^3.3.2",
 		"prettier": "^3.2.5",
 		"typescript": "^5.3.3",
-		"vite": "^5.1.1",
+		"vite": "^5.1.4",
 		"vite-tsconfig-paths": "^4.3.1",
-		"wrangler": "^3.28.4",
+		"wrangler": "^3.29.0",
 		"ws": "^8.16.0"
 	},
 	"engines": {
@@ -52,5 +52,10 @@
 		"printWidth": 100,
 		"tabWidth": 4,
 		"useTabs": true
+	},
+	"pnpm": {
+		"patchedDependencies": {
+			"@remix-run/dev@2.7.2": "patches/@remix-run__dev@2.7.2.patch"
+		}
 	}
 }

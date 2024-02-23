@@ -3,7 +3,7 @@ compatibility_date = "2023-12-01"
 [[durable_objects.bindings]]
 name = "EchoDo"
 class_name = "EchoDo"
-script_name = "echo"
+script_name = "durable-objects"
 
 [[migrations]]
 tag = "v1"

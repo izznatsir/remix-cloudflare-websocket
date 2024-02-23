@@ -1,6 +1,5 @@
 {
 	"include": ["env.d.ts", "**/*.ts", "**/*.tsx"],
-	"exclude": ["plugins/**/*.ts"],
 	"compilerOptions": {
 		"baseUrl": ".",
 		"esModuleInterop": true,

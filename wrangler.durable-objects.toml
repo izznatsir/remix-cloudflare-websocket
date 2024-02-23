@@ -1,5 +1,5 @@
-name = "echo"
-main = "service.ts"
+name = "durable-objects"
+main = "durable-objects.ts"
 compatibility_date = "2023-12-01"
 first_party_worker = true
 
