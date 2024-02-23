@@ -6,8 +6,9 @@
 	"scripts": {
 		"build": "remix vite:build",
 		"deploy": "wrangler pages deploy ./build/client",
-		"dev": "remix vite:dev",
-		"dev:durable-objects": "wrangler dev --config wrangler.durable-objects.toml",
+		"dev": "concurrently \"pnpm:dev:*\"",
+		"dev:remix": "wait-on http://localhost:8788 && remix vite:dev",
+		"dev:durable-objects": "wrangler dev --config wrangler.durable-objects.toml --port 8788",
 		"format": "prettier --ignore-unknown --write .",
 		"lint": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint .",
 		"start": "wrangler pages dev ./build/client",
@@ -28,6 +29,7 @@
 		"@types/react": "^18.2.57",
 		"@types/react-dom": "^18.2.7",
 		"@typescript-eslint/eslint-plugin": "^7.0.2",
+		"concurrently": "^8.2.2",
 		"eslint": "^8.38.0",
 		"eslint-config-prettier": "^9.0.0",
 		"eslint-import-resolver-typescript": "^3.6.1",
@@ -40,6 +42,7 @@
 		"typescript": "^5.3.3",
 		"vite": "^5.1.4",
 		"vite-tsconfig-paths": "^4.3.1",
+		"wait-on": "^7.2.0",
 		"wrangler": "^3.29.0"
 	},
 	"engines": {
