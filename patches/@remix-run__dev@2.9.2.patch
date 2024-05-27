@@ -1,14 +1,7 @@
 diff --git a/dist/vite/cloudflare-proxy-plugin.js b/dist/vite/cloudflare-proxy-plugin.js
-index 4a414ecb8c7956a0595073b95a7836ba3a3da934..a02834003d2c7c66c82b92d40be75a3ecd08ab35 100644
+index a7894cceeffffa43703a3303b87ef5c068f310b4..269c5e28294a5dd31edfe091d08dcd6038e41d21 100644
 --- a/dist/vite/cloudflare-proxy-plugin.js
 +++ b/dist/vite/cloudflare-proxy-plugin.js
-@@ -1,5 +1,5 @@
- /**
-- * @remix-run/dev v2.7.2
-+ * @remix-run/dev v2.7.1
-  *
-  * Copyright (c) Remix Software Inc.
-  *
 @@ -13,6 +13,8 @@
  Object.defineProperty(exports, '__esModule', { value: true });
  
@@ -32,7 +25,7 @@ index 4a414ecb8c7956a0595073b95a7836ba3a3da934..a02834003d2c7c66c82b92d40be75a3e
        ssr: {
          resolve: {
            externalConditions: ["workerd", "worker"]
-@@ -56,6 +65,65 @@ const cloudflareDevProxyVitePlugin = ({
+@@ -56,6 +65,66 @@ const cloudflareDevProxyVitePlugin = ({
        let context = {
          cloudflare
        };
@@ -95,6 +88,7 @@ index 4a414ecb8c7956a0595073b95a7836ba3a3da934..a02834003d2c7c66c82b92d40be75a3e
 +          });
 +        });
 +      }
++
        return () => {
          if (!viteDevServer.config.server.middlewareMode) {
            viteDevServer.middlewares.use(async (nodeReq, nodeRes, next) => {
